@@ -26,4 +26,5 @@ t = (xbar-mu) / (sd(sm_frame)/sqrt(n))
 2*pt(-abs(t),df=n-1)
 
 # C
-t.test(h, alternative = 'two.sided', mu = t_mu)
+var.test(X, Y)
+t.test(X, Y, var.equal = TRUE)

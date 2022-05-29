@@ -10,7 +10,8 @@ p_value = 2*pt(-abs(t),df=n-1)
 p_value
 
 # A
-# Setuju
+# Setuju, arena kesimpulan dari uji z menolak H0, sehingga mobil
+# dikemudikan rata-rata lebih dari 20000 kilometer per tahun
 
 # B
 # Dengan apa yang diketahui, maka

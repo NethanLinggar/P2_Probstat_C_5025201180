@@ -1,42 +1,39 @@
-dataoneway <- read.table("onewayanova.txt",h=T)
-dim(dataoneway)
-head(dataoneway)
-attach(dataoneway)
-names(dataoneway)
+# A
+myFile  <- read.table(url("https://rstatisticsandresearch.weebly.com/uploads/1/0/2/6/1026585/onewayanova.txt"))
+dim(myFile)
+head(myFile)
+attach(myFile)
 
-dataoneway$Group <- as.factor(dataoneway$Group)
-dataoneway$Group = factor(dataoneway$Group,labels = c("Kucing Oren","Kucing Hitam","Kucing Putih","Kucing Oren"))
+myFile$V1 <- as.factor(myFile$V1)
+myFile$V1 = factor(myFile$V1,labels = c("Kucing Oren","Kucing Hitam","Kucing Putih","Kucing Oren"))
 
-class(dataoneway$Group)
+class(myFile$V1)
 
-Group1 <- subset(dataoneway, Group == "Kucing Oren")
-Group2 <- subset(dataoneway, Group == "Kucing Hitam")
-Group3 <- subset(dataoneway, Group == "Kucing Putih")
+group1 <- subset(myFile, V1=="Kucing Oren")
+group2 <- subset(myFile, V1=="Kucing Hitam")
+group3 <- subset(myFile, V1=="Kucing Putih")
 
 # B
-bartlett.test(Length ~ Group, data = dataoneway)
+bartlett.test(Length~Group, data=myFile)
 
 # C
-qqnorm(Group1$Length)
-qqline(Group1$Length)
+qqnorm(group1$Length)
+qqline(group1$Length)
 
 # D
 # Setelah di jalankan, didapatkan nilai p-value = 0.8054
 
 # E
-model1 = lm(Length ~ Group, data = dataoneway)
+model1 <- lm(Length~Group, data=myFile)
+
 anova(model1)
+
 TukeyHSD(aov(model1))
 
 # F
-install.packages("ggplot2")
-library("ggplot2")
-
-ggplot(dataoneway, aes(x = Group, y = Length)) +
-  geom_boxplot(fill = "grey80", colour = "black") +
-  scale_x_discrete() + xlab("Treatment Group") +
-  ylab("Length (cm)")
-
+library(ggplot2)
+ggplot(dataoneway, aes(x = Group, y = Length)) + geom_boxplot(fill = "grey80", colour = "black") + 
+  scale_x_discrete() + xlab("Treatment Group") +  ylab("Length (cm)")
 
 
 

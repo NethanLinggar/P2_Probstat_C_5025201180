@@ -39,3 +39,7 @@ print(tukey)
 # creating the compact letter display
 tukey.cld <- multcompLetters4(anova, tukey)
 print(tukey.cld)
+
+cld <- as.data.frame.list(tukey.cld$`Glass:Temp_Factor`)
+data_summary$Tukey <- cld$Letters
+print(data_summary)
